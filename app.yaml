@@ -1,19 +1,8 @@
-runtime: python27
-api_version: 1
-threadsafe: true
-
+application: omarresume version: 1 runtime: python27 api_version: 1 threadsafe: yes
 handlers:
-- url: /
-  static_files: www/index.html
-  upload: www/index.html
-
-- url: /(.*)
-  static_files: www/\1
-  upload: www/(.*)
-  
-manual_scaling:
-  instances: 1
-resources:
-  cpu: 1
-  memory_gb: 1
-  disk_size_gb: 20
+- url: /(.*\.html) static_files: static/\1 upload: static/(.*)
+- url: / static_files: static/index.html upload: static/index.html 
+- url: /styles/(.*) static_files: static/styles/\1 upload: static/styles/(.*) 
+- url: /(.*\.(bmp|gif|ico|jpeg|jpg|png))
+  static_files: static/\1
+  upload: static/(.*\.(bmp|gif|ico|jpeg|jpg|png))
